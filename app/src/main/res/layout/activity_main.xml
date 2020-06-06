@@ -117,7 +117,8 @@
             android:layout_weight="1"
             android:onClick="onFastListtoJson"
             android:text="List转JSON" />
-    </LinearLayout> <TextView
+    </LinearLayout>
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
@@ -165,9 +166,42 @@
             android:onClick="onJackListtoJson"
             android:text="List转JSON" />
     </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:text="ProtoBuf" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onProtoToJson"
+            android:text="Proto转Json" />
 
-
-
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onJsonToProto"
+            android:text="JSON转Proto" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onProtoToSerializable"
+            android:text="Proto序列化" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onSerializableToProto"
+            android:text="Proto反序列化" />
+    </LinearLayout>
 
 
 </LinearLayout>

@@ -15,7 +15,7 @@ public class Bean implements Serializable {
     private int number = 1;
     private ObjectBean object;
     private String string ="Hello World";
-    private int[] array = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};;
+    private int[] array = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
     public boolean isIsBoolean() {
         return isBoolean;

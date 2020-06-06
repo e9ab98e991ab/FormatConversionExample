@@ -48,6 +48,7 @@ dependencies {
     implementation 'com.google.protobuf:protobuf-java:3.11.3'
     implementation 'com.google.protobuf:protoc:3.11.3'
     implementation 'com.googlecode.protobuf-java-format:protobuf-java-format:1.2'
+
 }
 
 apply plugin: 'com.google.protobuf'
@@ -66,6 +67,5 @@ protobuf {
             }
         }
     }
-
     generatedFilesBaseDir = "$projectDir/src/generated"
 }

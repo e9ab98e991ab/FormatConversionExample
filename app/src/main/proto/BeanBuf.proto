@@ -1,0 +1,30 @@
+//protobuf的格式 只能为proto2 或者protp3 其他格式报错
+syntax = "proto3";
+
+//生成java类所在的包名
+package com.e9ab98e991ab.formatconversionexample.entity;
+option java_multiple_files = true;
+import public "Address.proto";
+
+message BeanBuf {
+  reserved 6 to 9;
+
+  oneof age_oneof {
+    uint32 age = 1;
+    uint64 birth_date = 11;
+  }
+  string name = 2;
+  //string address = 3; compile error: field is reserved
+  Gender gender = 4;
+  Address address = 5;
+  repeated string phone = 10 [deprecated = true];
+
+  enum Gender {
+    option allow_alias = true;
+    MALE = 0;
+    MAN = 0;
+    FEMALE = 1;
+    OTHER = 2;
+  }
+
+}

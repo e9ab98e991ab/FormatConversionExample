@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package com.e9ab98e991ab.formatconversionexample.entity;
+
+message Address {
+  string name = 1;
+}

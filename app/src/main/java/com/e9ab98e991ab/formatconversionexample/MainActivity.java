@@ -8,6 +8,8 @@ import android.view.View;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.e9ab98e991ab.formatconversionexample.databinding.ActivityMainBinding;
+import com.e9ab98e991ab.formatconversionexample.entity.BeanBuf;
+import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,9 +17,12 @@ import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonArrayFormatVisitor;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.googlecode.protobuf.format.JsonFormat;
 
+import java.io.IOException;
 import java.lang.reflect.Member;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -104,7 +109,6 @@ public class MainActivity extends AppCompatActivity  {
     /*****
      * JackJson
      */
-
     private static ObjectMapper MAPPER = new ObjectMapper();
     public void onJackBeanToJson(View v) throws JsonProcessingException {
         mBinding.textView.setText(MAPPER.writeValueAsString(new Bean()));
@@ -138,7 +142,37 @@ public class MainActivity extends AppCompatActivity  {
         String ljson = MAPPER.writeValueAsString(list);
         mBinding.textView.setText(MAPPER.readValue(ljson, ArrayList.class).toString());
     }
+    /*
+     * ProtoBuf
+     */
+    public void onProtoToJson(View v) {
+        BeanBuf beanBuf = BeanBuf.newBuilder().setName("测试").build();
+        String jsonFormat = JsonFormat.printToString(beanBuf);
+        mBinding.textView.setText(jsonFormat);
+    }
+    public void onJsonToProto(View v) throws JsonFormat.ParseException {
+        BeanBuf beanBuf = BeanBuf.newBuilder().setAge(1).build();
+        String jsonFormat = JsonFormat.printToString(beanBuf);
 
+        BeanBuf bean = BeanBuf.newBuilder().setAge(11111111).build();
+        JsonFormat.merge(jsonFormat, bean.toBuilder());
+        mBinding.textView.setText(beanBuf.toString());
+    }
+
+    public void onProtoToSerializable(View v) {
+        BeanBuf bean = BeanBuf.newBuilder().setAge(11111111).build();
+        byte[] byteArray1 = bean.toByteArray();
+        mBinding.textView.setText(Arrays.toString(byteArray1));
+    }
+    public void onSerializableToProto(View v)   {
+        BeanBuf bean = BeanBuf.newBuilder().setAge(11111111).build();
+        try {
+            BeanBuf buf = BeanBuf.parseFrom(bean.toByteArray());
+            mBinding.textView.setText(buf.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     
 }
